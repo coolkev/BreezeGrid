@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BreezeGrid</id>
+    <version>1.0.0</version>
+    <title>BreezeGrid</title>
+    <authors>coolkev</authors>
+    <owners>coolkev</owners>
+    <projectUrl>https://github.com/coolkev/BreezeGrid</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Grid component for Breeze</description>
+    <copyright>Copyright 2014</copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+    
+    <file src="Scripts\breezeGrid\BreezeGrid.js" target="Scripts\BreezeGrid"  />
+    <file src="Scripts\breezeGrid\BreezeGrid.min.js" target="Scripts\BreezeGrid"  />
+    <file src="Scripts\breezeGrid\BreezeGrid.d.ts" target="Scripts\BreezeGrid"  />
+
+    <file src="Content\breezeGrid\*.*" target="Content\BreezeGrid"  />
+    
+  </files>
+</package>

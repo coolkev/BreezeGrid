@@ -1,0 +1,7 @@
+packages
+BreezeGrid.v12.suo
+.nuget
+src/BreezeGrid.WebApiSample/App_Data
+bin/
+obj/
+*.csproj.user

@@ -1,0 +1,23 @@
+﻿
+<link href="~/Content/breezeGrid/breezeGrid.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/knockout-3.2.0.debug.js"></script>
+<script src="~/Scripts/q.js"></script>
+<script src="~/Scripts/breeze.debug.js"></script>
+<script src="~/Scripts/app.js"></script>
+
+<script src="~/Scripts/breezeGrid/BreezeGrid.js"></script>
+<script src="~/Scripts/breezeGrid/BreezeGrid.BindingHandlers.js"></script>
+
+<script src="~/Scripts/breezeGrid/plugins/BreezeGrid.Editing.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        BreezeGridWebApiSample.init();
+    });
+
+</script>
+
+<div data-bind="breezeGrid: grid"></div>
