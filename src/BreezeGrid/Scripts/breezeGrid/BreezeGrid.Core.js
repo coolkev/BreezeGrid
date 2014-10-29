@@ -1,4 +1,4 @@
-var BreezeGrid;
+﻿var BreezeGrid;
 (function (_BreezeGrid) {
     var BreezeGrid = (function () {
         function BreezeGrid(options) {

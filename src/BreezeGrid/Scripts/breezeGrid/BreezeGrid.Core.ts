@@ -15,6 +15,7 @@ module BreezeGrid {
 
         public dataProvider: DataProvider;
 
+
         constructor(public options: GridOptions<T>) {
 
             //initialize plugins
