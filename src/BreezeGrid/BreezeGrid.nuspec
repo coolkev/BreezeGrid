@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>BreezeGrid</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>BreezeGrid</title>
     <authors>coolkev</authors>
     <owners>coolkev</owners>
@@ -14,11 +14,11 @@
   </metadata>
   <files>
     
-    <file src="Scripts\breezeGrid\BreezeGrid.js" target="Scripts\BreezeGrid"  />
-    <file src="Scripts\breezeGrid\BreezeGrid.min.js" target="Scripts\BreezeGrid"  />
-    <file src="Scripts\breezeGrid\BreezeGrid.d.ts" target="Scripts\BreezeGrid"  />
+    <file src="Scripts\breezeGrid\BreezeGrid.js" target="Content\Scripts\BreezeGrid"  />
+    <file src="Scripts\breezeGrid\BreezeGrid.min.js" target="Content\Scripts\BreezeGrid"  />
+    <file src="Scripts\breezeGrid\BreezeGrid.d.ts" target="Content\Scripts\BreezeGrid"  />
 
-    <file src="Content\breezeGrid\*.*" target="Content\BreezeGrid"  />
+    <file src="Content\breezeGrid\*.*" target="Content\Content\BreezeGrid"  />
     
   </files>
 </package>

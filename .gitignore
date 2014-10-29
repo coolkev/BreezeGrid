@@ -5,3 +5,4 @@ src/BreezeGrid.WebApiSample/App_Data
 bin/
 obj/
 *.csproj.user
+src/BreezeGrid/*.nupkg
