@@ -177,27 +177,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\breezeGrid\ajax-loader-large.gif" />
-    <Content Include="Content\breezeGrid\breezeGrid.css">
-      <DependentUpon>breezeGrid.less</DependentUpon>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app.js.map" />
-    <Content Include="Content\breezeGrid\breezeGrid.css.map">
-      <DependentUpon>breezeGrid.css</DependentUpon>
-    </Content>
-    <Content Include="Content\breezeGrid\breezeGrid.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
-    <Content Include="Scripts\breezeGrid\BreezeGrid.BindingHandlers.js" />
-    <Content Include="Scripts\breezeGrid\BreezeGrid.js" />
-    <Content Include="Scripts\breezeGrid\plugins\BreezeGrid.Editing.js" />
-    <Content Include="Scripts\breezeGrid\plugins\BreezeGrid.Paging.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -236,7 +224,6 @@
       <DependentUpon>Product.cs</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Scripts\app.ts" />
-    <TypeScriptCompile Include="Scripts\BreezeGrid.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\breeze\breeze.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
