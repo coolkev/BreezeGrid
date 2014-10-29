@@ -1,5 +1,4 @@
-﻿/// <reference path="breezegrid.d.ts" />
-var BreezeGridWebApiSample;
+﻿var BreezeGridWebApiSample;
 (function (BreezeGridWebApiSample) {
     function init() {
         var manager = new breeze.EntityManager('/breeze/Products');
