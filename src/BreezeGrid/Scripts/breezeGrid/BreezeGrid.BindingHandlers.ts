@@ -27,28 +27,6 @@
         }
     }
 
-    //modify an existing templateEngine to work with string templates
-    //function createStringTemplateEngine(templateEngine: KnockoutTemplateEngine) {
-
-
-    //    templateEngine.renderTemplate = function (template, bindingContext, options, templateDocument) {
-    //        //var templateSource = this['makeTemplateSource'](template, templateDocument);
-    //        return this['renderTemplateSource'](templateSource, bindingContext, options);
-    //    };
-
-
-    //    //var origmakeTemplateSource = templateEngine.makeTemplateSource;
-    //    //templateEngine.makeTemplateSource = function(templateName) {
-
-    //    //    if (templates[templateName]) {
-    //    //        return new StringTemplateSource(templateName, templates);
-    //    //    }
-
-    //    //    return origmakeTemplateSource(templateName);
-    //    //};
-    //    return templateEngine;
-    //}
-
     var templateEngine: KnockoutTemplateEngine;
     ko.bindingHandlers['breezeGrid'] = <KnockoutBindingHandler> {
         init: (element, valueAccessor, allBindings, viewModel, bindingContext) => {
@@ -57,33 +35,19 @@
 
             var templates = gridModel.templates;
 
-            //var cellTemplateTypes = ['headerCellTemplate', 'cellViewTemplate', 'cellEditTemplate'];
 
-            //gridModel.columns().forEach((c, i) => {
-
-            //    cellTemplateTypes.forEach(t => {
-            //        if (c[t]) {
-            //            templates[t + i] = c[t];
-            //        }
-            //    });
-            //});
             if (!templateEngine) {
                 templateEngine = <KnockoutTemplateEngine> new ko.nativeTemplateEngine();
                 templateEngine.renderTemplate = function (template, bindingContext, options, templateDocument) {
                     
-                    //if (!bindingContext.$data['templateSource']) {
-                      //  bindingContext.$data['templateSource'] = new StringTemplateSource()
-                    //}
                     var templateSource = new StringTemplateSource(template, templates);
 
-                    //var templateSource = this['makeTemplateSource'](template, templateDocument);
                     return this['renderTemplateSource'](templateSource, bindingContext, options);
                 };
 
                 ko.setTemplateEngine(templateEngine);
             }
 
-            //var gridElem = $(gridModel.templates['gridTemplate']);
 
             var gridElem = $('<div class="ajaxloader"></div>' +
                 '<table class="table table-condensed ' + (gridModel.options.tableCssClass || '') + '">' +
@@ -111,8 +75,6 @@
             });
 
 
-            //var innerBindingContext = bindingContext.extend(valueAccessor);
-            //ko.applyBindingsToDescendants(innerBindingContext, element);
             var childBindingContext = bindingContext.createChildContext(valueAccessor);
             ko.applyBindingsToDescendants(childBindingContext, element);
 

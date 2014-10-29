@@ -61,6 +61,10 @@
 
             Editing.prototype.deleteRow = function (row) {
                 var _this = this;
+                if ($('#dialog-delete').length == 0) {
+                    $('body').append(this.getDeleteDialogTemplate());
+                }
+
                 $('#dialog-delete .btn-primary').one('click', function (e) {
                     row.entityAspect.setDeleted();
 
@@ -76,6 +80,10 @@
                 $('#dialog-delete').on('hide.bs.modal', function (e) {
                     $('#dialog-delete .btn-primary').unbind('click');
                 }).modal();
+            };
+
+            Editing.prototype.getDeleteDialogTemplate = function () {
+                return '<div class="modal fade" id="dialog-delete"><div class="modal-dialog"><div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>' + '<h4 class="modal-title">Confirm Delete</h4>' + '</div>' + '<div class="modal-body">' + '<p>Are you sure you want to delete this record?</p>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary">Yes</button>' + '<button type="button" class="btn btn-default" data-dismiss="modal">No</button>' + '</div>' + '</div><!-- /.modal-content --></div><!-- /.modal-dialog --></div><!-- /.modal -->';
             };
 
             Editing.prototype.getDefaultTemplates = function () {

@@ -263,20 +263,8 @@ module BreezeGrid {
 
     export class BreezeDataProvider implements DataProvider {
 
-        //public query: breeze.EntityQuery;
-        //constructor(manager: breeze.EntityManager, query: breeze.EntityQuery, entityTypeName: string);
-        //constructor(manager: breeze.EntityManager, query: KnockoutComputed<breeze.EntityQuery>, entityTypeName: string);
         constructor(public manager: breeze.EntityManager, public query: breeze.EntityQuery, private entityTypeName: string) {
 
-            //if (ko.isObservable(this.query)) {
-            //  this.query = query();
-
-            //(<KnockoutObservable<breeze.EntityQuery>> query).subscribe(newQuery => {
-            //    this.query = newQuery;
-            //});
-            //} else {
-            //    this.query = query;
-            //}
         }
 
         public executeQuery(options: QueryOptions, callback: breeze.ExecuteQuerySuccessCallback) {
@@ -377,125 +365,6 @@ module BreezeGrid {
         }
 
     }
-    //export module Views {
-    //    //export interface View<T> {
-    //    //    (col: Column<T>, value, row: T);
-    //    //}
-
-
-    //    export function Default<T>(col: Column<T>, value, row: T) {
-    //        return {
-    //            div: {
-    //                text: value,
-    //                attr:
-    //                {
-    //                    title: value
-    //                },
-    //                style: {
-    //                    width: col.width
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    export function Hyperlink<T>(hrefBuilder: (row: T) => string) {
-
-    //        return (col: Column<T>, value, row: T) => {
-    //            return {
-    //                a: {
-    //                    text: value,
-    //                    attr:
-    //                    {
-    //                        href: hrefBuilder(row),
-    //                        title: value
-    //                    },
-    //                    style: {
-    //                        width: col.width
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-
-//export class Default<T> implements View<T> {
-
-        //    constructor() {
-                
-        //    }
-
-
-        //    public getTemplate(col: Column<T>, value, row) {
-
-        //        return {
-        //            div: {
-        //                text: value,
-        //                attr:
-        //                {
-        //                    title: value
-        //                },
-        //                style: {
-        //                    width: col.width
-        //                }
-        //            }
-        //        }
-
-        //    }
-
-        //    //public static extend(builder: (value, row)=>any) {
-        //    //    return new ExtendedColumn(this)
-        //    //}
-        //}
-        //export class Hyperlink<T> implements View<T> {
-            
-        //    constructor(private hrefBuilder: (row: T) => string) {
-                
-        //    }
-        //    public getTemplate(col: Column<T>, value, row) {
-
-        //        return {
-        //            a: {
-        //                text: value,
-        //                attr:
-        //                {
-        //                    href: this.hrefBuilder(row),
-        //                    title: value
-        //                },
-        //                style: {
-        //                    width: col.width
-        //                }
-        //            }
-        //        }
-
-        //    }
-
-        //}
-
-
-
-        //export class ExtendedColumn implements View {
-        //    constructor(viewclass: new() => View) {
-                
-        //    }
-
-        //    public getTemplate(value, row) {
-
-        //        return {
-        //            div: {
-        //                text: value,
-        //                attr:
-        //                {
-        //                    title: value
-        //                },
-        //                style: {
-        //                    width: this.col.width + 'px'
-        //                }
-        //            }
-        //        }
-
-        //    }
-
-        //}
-    //}
 
     function extendDeep(target, source) {
         if (source) {

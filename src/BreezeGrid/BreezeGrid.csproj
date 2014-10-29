@@ -99,4 +99,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)Scripts\breezeGrid\BreezeGrid.js $(SolutionDir)src\BreezeGrid.WebApiSample\Scripts\breezeGrid\ /Y
+copy $(ProjectDir)Scripts\breezeGrid\BreezeGrid.min.js $(SolutionDir)src\BreezeGrid.WebApiSample\Scripts\breezeGrid\ /Y
+copy $(ProjectDir)Scripts\breezeGrid\BreezeGrid.d.ts $(SolutionDir)src\BreezeGrid.WebApiSample\Scripts\breezeGrid\ /Y
+copy $(ProjectDir)Content\breezeGrid\*.* $(SolutionDir)src\BreezeGrid.WebApiSample\Content\breezeGrid\ /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

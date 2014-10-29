@@ -173,21 +173,10 @@
     _BreezeGrid.BreezeGrid = BreezeGrid;
 
     var BreezeDataProvider = (function () {
-        //public query: breeze.EntityQuery;
-        //constructor(manager: breeze.EntityManager, query: breeze.EntityQuery, entityTypeName: string);
-        //constructor(manager: breeze.EntityManager, query: KnockoutComputed<breeze.EntityQuery>, entityTypeName: string);
         function BreezeDataProvider(manager, query, entityTypeName) {
             this.manager = manager;
             this.query = query;
             this.entityTypeName = entityTypeName;
-            //if (ko.isObservable(this.query)) {
-            //  this.query = query();
-            //(<KnockoutObservable<breeze.EntityQuery>> query).subscribe(newQuery => {
-            //    this.query = newQuery;
-            //});
-            //} else {
-            //    this.query = query;
-            //}
         }
         BreezeDataProvider.prototype.executeQuery = function (options, callback) {
             var q = this.query;
@@ -263,100 +252,6 @@
     })();
     _BreezeGrid.ViewBuilder = ViewBuilder;
 
-    //export module Views {
-    //    //export interface View<T> {
-    //    //    (col: Column<T>, value, row: T);
-    //    //}
-    //    export function Default<T>(col: Column<T>, value, row: T) {
-    //        return {
-    //            div: {
-    //                text: value,
-    //                attr:
-    //                {
-    //                    title: value
-    //                },
-    //                style: {
-    //                    width: col.width
-    //                }
-    //            }
-    //        }
-    //    }
-    //    export function Hyperlink<T>(hrefBuilder: (row: T) => string) {
-    //        return (col: Column<T>, value, row: T) => {
-    //            return {
-    //                a: {
-    //                    text: value,
-    //                    attr:
-    //                    {
-    //                        href: hrefBuilder(row),
-    //                        title: value
-    //                    },
-    //                    style: {
-    //                        width: col.width
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //export class Default<T> implements View<T> {
-    //    constructor() {
-    //    }
-    //    public getTemplate(col: Column<T>, value, row) {
-    //        return {
-    //            div: {
-    //                text: value,
-    //                attr:
-    //                {
-    //                    title: value
-    //                },
-    //                style: {
-    //                    width: col.width
-    //                }
-    //            }
-    //        }
-    //    }
-    //    //public static extend(builder: (value, row)=>any) {
-    //    //    return new ExtendedColumn(this)
-    //    //}
-    //}
-    //export class Hyperlink<T> implements View<T> {
-    //    constructor(private hrefBuilder: (row: T) => string) {
-    //    }
-    //    public getTemplate(col: Column<T>, value, row) {
-    //        return {
-    //            a: {
-    //                text: value,
-    //                attr:
-    //                {
-    //                    href: this.hrefBuilder(row),
-    //                    title: value
-    //                },
-    //                style: {
-    //                    width: col.width
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-    //export class ExtendedColumn implements View {
-    //    constructor(viewclass: new() => View) {
-    //    }
-    //    public getTemplate(value, row) {
-    //        return {
-    //            div: {
-    //                text: value,
-    //                attr:
-    //                {
-    //                    title: value
-    //                },
-    //                style: {
-    //                    width: this.col.width + 'px'
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-    //}
     function extendDeep(target, source) {
         if (source) {
             for (var prop in source) {
@@ -484,21 +379,6 @@ var BreezeGrid;
         return StringTemplateSource;
     })();
 
-    //modify an existing templateEngine to work with string templates
-    //function createStringTemplateEngine(templateEngine: KnockoutTemplateEngine) {
-    //    templateEngine.renderTemplate = function (template, bindingContext, options, templateDocument) {
-    //        //var templateSource = this['makeTemplateSource'](template, templateDocument);
-    //        return this['renderTemplateSource'](templateSource, bindingContext, options);
-    //    };
-    //    //var origmakeTemplateSource = templateEngine.makeTemplateSource;
-    //    //templateEngine.makeTemplateSource = function(templateName) {
-    //    //    if (templates[templateName]) {
-    //    //        return new StringTemplateSource(templateName, templates);
-    //    //    }
-    //    //    return origmakeTemplateSource(templateName);
-    //    //};
-    //    return templateEngine;
-    //}
     var templateEngine;
     ko.bindingHandlers['breezeGrid'] = {
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -507,30 +387,17 @@ var BreezeGrid;
 
             var templates = gridModel.templates;
 
-            //var cellTemplateTypes = ['headerCellTemplate', 'cellViewTemplate', 'cellEditTemplate'];
-            //gridModel.columns().forEach((c, i) => {
-            //    cellTemplateTypes.forEach(t => {
-            //        if (c[t]) {
-            //            templates[t + i] = c[t];
-            //        }
-            //    });
-            //});
             if (!templateEngine) {
                 templateEngine = new ko.nativeTemplateEngine();
                 templateEngine.renderTemplate = function (template, bindingContext, options, templateDocument) {
-                    //if (!bindingContext.$data['templateSource']) {
-                    //  bindingContext.$data['templateSource'] = new StringTemplateSource()
-                    //}
                     var templateSource = new StringTemplateSource(template, templates);
 
-                    //var templateSource = this['makeTemplateSource'](template, templateDocument);
                     return this['renderTemplateSource'](templateSource, bindingContext, options);
                 };
 
                 ko.setTemplateEngine(templateEngine);
             }
 
-            //var gridElem = $(gridModel.templates['gridTemplate']);
             var gridElem = $('<div class="ajaxloader"></div>' + '<table class="table table-condensed ' + (gridModel.options.tableCssClass || '') + '">' + '<thead>' + '<tr data-bind="template: \'headerRowTemplate\'">' + '</tr>' + '</thead>' + '<tbody data-bind="foreach: rows">' + gridModel.getRowTemplate() + '</tbody>' + '<tfoot>' + '<tr data-bind="template: \'footerRowTemplate\'">' + '</tfoot>' + '</table>');
 
             //set the right styling on the container
@@ -544,8 +411,6 @@ var BreezeGrid;
                 elem.toggleClass('loading', loading);
             });
 
-            //var innerBindingContext = bindingContext.extend(valueAccessor);
-            //ko.applyBindingsToDescendants(innerBindingContext, element);
             var childBindingContext = bindingContext.createChildContext(valueAccessor);
             ko.applyBindingsToDescendants(childBindingContext, element);
 
@@ -649,6 +514,10 @@ var BreezeGrid;
 
             Editing.prototype.deleteRow = function (row) {
                 var _this = this;
+                if ($('#dialog-delete').length == 0) {
+                    $('body').append(this.getDeleteDialogTemplate());
+                }
+
                 $('#dialog-delete .btn-primary').one('click', function (e) {
                     row.entityAspect.setDeleted();
 
@@ -664,6 +533,10 @@ var BreezeGrid;
                 $('#dialog-delete').on('hide.bs.modal', function (e) {
                     $('#dialog-delete .btn-primary').unbind('click');
                 }).modal();
+            };
+
+            Editing.prototype.getDeleteDialogTemplate = function () {
+                return '<div class="modal fade" id="dialog-delete"><div class="modal-dialog"><div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>' + '<h4 class="modal-title">Confirm Delete</h4>' + '</div>' + '<div class="modal-body">' + '<p>Are you sure you want to delete this record?</p>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary">Yes</button>' + '<button type="button" class="btn btn-default" data-dismiss="modal">No</button>' + '</div>' + '</div><!-- /.modal-content --></div><!-- /.modal-dialog --></div><!-- /.modal -->';
             };
 
             Editing.prototype.getDefaultTemplates = function () {

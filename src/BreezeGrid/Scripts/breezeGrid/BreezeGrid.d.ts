@@ -25,9 +25,6 @@
 
     class BreezeDataProvider implements DataProvider {
 
-        //public query: breeze.EntityQuery;
-        //constructor(manager: breeze.EntityManager, query: breeze.EntityQuery, entityTypeName: string);
-        //constructor(manager: breeze.EntityManager, query: KnockoutComputed<breeze.EntityQuery>, entityTypeName: string);
         constructor(manager: breeze.EntityManager, query: breeze.EntityQuery, entityTypeName: string);
 
         executeQuery(options: QueryOptions, callback: breeze.ExecuteQuerySuccessCallback): Q.Promise<breeze.QueryResult>;

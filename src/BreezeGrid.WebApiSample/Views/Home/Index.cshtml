@@ -20,4 +20,11 @@
 
     </script>
 }
+
+
+
+<div data-bind="if: grid.addNew">
+    <button class="btn btn-primary" data-bind="click:grid.addNew">Add New</button>
+</div>
+
 <div data-bind="breezeGrid: grid"></div>
