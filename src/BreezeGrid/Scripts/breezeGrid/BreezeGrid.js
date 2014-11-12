@@ -685,7 +685,9 @@ var BreezeGrid;
                 return templates;
             };
             Paging.prototype.setTotalCount = function (data) {
-                this.grid.totalCount(data.inlineCount);
+                if (data.inlineCount >= 0) {
+                    this.grid.totalCount(data.inlineCount);
+                }
             };
             return Paging;
         })();

@@ -99,8 +99,9 @@
 
         }
         public setTotalCount(data: breeze.QueryResult) {
-            this.grid.totalCount(data.inlineCount);
-            
+            if (data.inlineCount>=0) {
+                this.grid.totalCount(data.inlineCount);
+            }
         }
 
 
