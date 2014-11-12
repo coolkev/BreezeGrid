@@ -27,4 +27,10 @@
     <button class="btn btn-primary" data-bind="click:grid.addNew">Add New</button>
 </div>
 
+
+Search by Name: 
+<input type="text" data-bind="value: searchText" class="form-control" />
+
+<button data-bind="click: performSearch" class="btn btn-default">Search</button>
+
 <div data-bind="breezeGrid: grid"></div>

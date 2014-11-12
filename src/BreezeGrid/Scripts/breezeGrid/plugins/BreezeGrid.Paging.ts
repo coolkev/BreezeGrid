@@ -8,7 +8,7 @@
         private original: BreezeGridMethods<T>;
 
         public pageCount: KnockoutComputed<number>;
-        public currentPage = ko.observable(1);
+        public currentPage = ko.observable(1).extend({numeric:0});
         public pageSize: KnockoutObservable<number>;
         public pageSizes: number[];
 
@@ -99,9 +99,8 @@
 
         }
         public setTotalCount(data: breeze.QueryResult) {
-            if (data.inlineCount) {
-                this.grid.totalCount(data.inlineCount);
-            }
+            this.grid.totalCount(data.inlineCount);
+            
         }
 
 

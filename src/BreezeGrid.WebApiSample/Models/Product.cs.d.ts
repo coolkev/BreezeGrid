@@ -4,5 +4,6 @@
 		Name: string;
 		Category: string;
 		Price: number;
+		DateAdded: Date;
 	}
 }

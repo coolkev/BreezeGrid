@@ -11,6 +11,13 @@
     <description>Grid component for Breeze</description>
     <copyright>Copyright 2014</copyright>
     <tags></tags>
+    <dependencies>
+      <dependency id="bootstrap.TypeScript.DefinitelyTyped" version="0.0.9" />
+      <dependency id="breeze.TypeScript.DefinitelyTyped" version="0.2.5" />
+      <dependency id="jquery.TypeScript.DefinitelyTyped" version="1.4.0" />
+      <dependency id="knockout.TypeScript.DefinitelyTyped" version="0.6.3" />
+      <dependency id="q.TypeScript.DefinitelyTyped" version="0.3.3" />
+    </dependencies>
   </metadata>
   <files>
     

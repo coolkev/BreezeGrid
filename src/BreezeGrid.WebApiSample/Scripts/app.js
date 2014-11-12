@@ -14,7 +14,10 @@
                 }, width: 140, headerText: 'Category', editor: BreezeGrid.Editors.Text },
             { field: function (m) {
                     return m.Price;
-                }, width: 80, editor: BreezeGrid.Editors.Text }
+                }, width: 80, editor: BreezeGrid.Editors.Text },
+            { field: function (m) {
+                    return m.DateAdded;
+                }, width: 250, editor: BreezeGrid.Editors.Text }
         ];
 
         var dataProvider = new BreezeGrid.BreezeDataProvider(manager, query, 'Product');
@@ -23,8 +26,13 @@
             grid: new BreezeGrid.BreezeGrid({
                 dataProvider: dataProvider,
                 columns: cols,
-                plugins: [BreezeGrid.Plugins.Editing]
-            })
+                plugins: [BreezeGrid.Plugins.Editing, BreezeGrid.Plugins.Paging]
+            }),
+            searchText: ko.observable(''),
+            performSearch: function () {
+                dataProvider.query = query.where('Name', 'contains', viewModel.searchText());
+                viewModel.grid.search();
+            }
         };
 
         viewModel.grid.search();

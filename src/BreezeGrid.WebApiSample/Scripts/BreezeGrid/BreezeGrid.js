@@ -9,6 +9,8 @@
             this.totalCount = ko.observable(0);
             this.rows = ko.observableArray();
             this.loading = ko.observable(true);
+            initKoNumericExtender();
+
             //initialize plugins
             (options.plugins || []).forEach(function (p) {
                 var plugin = typeof (p) == 'function' ? new p() : p;
@@ -350,6 +352,37 @@
         Editors.MultiSelect = MultiSelect;
     })(_BreezeGrid.Editors || (_BreezeGrid.Editors = {}));
     var Editors = _BreezeGrid.Editors;
+
+    function initKoNumericExtender() {
+        if (!ko.extenders['numeric']) {
+            //from http://knockoutjs.com/documentation/extenders.html
+            ko.extenders['numeric'] = function (target, precision) {
+                //create a writeable computed observable to intercept writes to our observable
+                var result = ko.computed({
+                    read: target,
+                    write: function (newValue) {
+                        var current = target(), roundingMultiplier = Math.pow(10, precision), newValueAsNum = isNaN(newValue) ? 0 : parseFloat(+newValue), valueToWrite = Math.round(newValueAsNum * roundingMultiplier) / roundingMultiplier;
+
+                        //only write if it changed
+                        if (valueToWrite !== current) {
+                            target(valueToWrite);
+                        } else {
+                            //if the rounded value is the same, but a different value was written, force a notification for the current field
+                            if (newValueAsNum !== current) {
+                                target.notifySubscribers(valueToWrite);
+                            }
+                        }
+                    }
+                }).extend({ notify: 'always' });
+
+                //initialize with current value to make sure it is rounded appropriately
+                result(target());
+
+                //return the new computed observable
+                return result;
+            };
+        }
+    }
 })(BreezeGrid || (BreezeGrid = {}));
 
 var BreezeGrid;
@@ -592,7 +625,7 @@ var BreezeGrid;
         var Paging = (function () {
             function Paging(defaultPageSize) {
                 if (typeof defaultPageSize === "undefined") { defaultPageSize = 20; }
-                this.currentPage = ko.observable(1);
+                this.currentPage = ko.observable(1).extend({ numeric: 0 });
                 this.currentPageChanging = false;
                 this.pageSizeChanging = false;
                 this.pageSize = ko.observable(defaultPageSize);
@@ -652,9 +685,7 @@ var BreezeGrid;
                 return templates;
             };
             Paging.prototype.setTotalCount = function (data) {
-                if (data.inlineCount) {
-                    this.grid.totalCount(data.inlineCount);
-                }
+                this.grid.totalCount(data.inlineCount);
             };
             return Paging;
         })();

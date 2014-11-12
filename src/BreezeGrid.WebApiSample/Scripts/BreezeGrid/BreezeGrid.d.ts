@@ -31,7 +31,8 @@
 
         createEntity();
         public saveChanges(row): Q.Promise<breeze.SaveResult>;
-
+        public manager: breeze.EntityManager;
+        public query: breeze.EntityQuery;
     }
 
     interface GridOptions<TEntity> {
@@ -64,12 +65,18 @@
 
         sortable?: boolean;
         sortExpression?: string;
+        editor?: any;
+        width?: number;
+        headerText?: string;
+        fieldName?: string;
 
     }
     interface Column<TEntity> extends ColumnBase {
 
-        field?: (a: TEntity) => any;
-
+        field?: (entity: TEntity) => any;
+        cssClass?: (row?: TEntity) => string;
+        formatter?: (value: any, row?: TEntity) => string;
+        viewTemplate?: (col: Column<TEntity>, value, row: TEntity) => any;
     }
 
 
@@ -106,6 +113,20 @@
         class Paging {
 
         }
+
+    }
+
+    class ViewBuilder<TEntity> {
+
+
+        public Default(col: Column<TEntity>, value, row: TEntity);
+
+        public ExtendDefault(builder: (row: TEntity) => any);
+
+
+        public Hyperlink(hrefBuilder: (row: TEntity) => string);
+
+
 
     }
 }

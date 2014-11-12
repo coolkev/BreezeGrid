@@ -4,7 +4,7 @@
         var Paging = (function () {
             function Paging(defaultPageSize) {
                 if (typeof defaultPageSize === "undefined") { defaultPageSize = 20; }
-                this.currentPage = ko.observable(1);
+                this.currentPage = ko.observable(1).extend({ numeric: 0 });
                 this.currentPageChanging = false;
                 this.pageSizeChanging = false;
                 this.pageSize = ko.observable(defaultPageSize);
@@ -64,9 +64,7 @@
                 return templates;
             };
             Paging.prototype.setTotalCount = function (data) {
-                if (data.inlineCount) {
-                    this.grid.totalCount(data.inlineCount);
-                }
+                this.grid.totalCount(data.inlineCount);
             };
             return Paging;
         })();
