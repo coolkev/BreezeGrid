@@ -26,19 +26,15 @@
                 });
 
                 this.currentPage.subscribe(function () {
-                    if (_this.grid.dataProvider) {
-                        _this.currentPageChanging = true;
-                        grid.search();
-                        _this.currentPageChanging = false;
-                    }
+                    _this.currentPageChanging = true;
+                    grid.search();
+                    _this.currentPageChanging = false;
                 }, this);
 
                 this.pageSize.subscribe(function () {
-                    if (_this.grid.dataProvider) {
-                        _this.pageSizeChanging = true;
-                        grid.search();
-                        _this.pageSizeChanging = false;
-                    }
+                    _this.pageSizeChanging = true;
+                    grid.search();
+                    _this.pageSizeChanging = false;
                 }, this);
 
                 grid['paging'] = this;

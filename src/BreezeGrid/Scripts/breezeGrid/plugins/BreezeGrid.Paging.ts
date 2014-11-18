@@ -6,7 +6,7 @@
         private grid: BreezeGrid<T>;
 
         private original: BreezeGridMethods<T>;
-        
+
         public pageCount: KnockoutComputed<number>;
         public currentPage = ko.observable(1).extend({numeric:0});
         public pageSize: KnockoutObservable<number>;
@@ -14,7 +14,6 @@
 
         private currentPageChanging = false;
         private pageSizeChanging = false;
-
         constructor(defaultPageSize: number = 20) {
 
             this.pageSize = ko.observable(defaultPageSize);
@@ -37,22 +36,16 @@
 
 
             this.currentPage.subscribe(() => {
-
-                if (this.grid.dataProvider) {
-                    this.currentPageChanging = true;
-                    grid.search();
-                    this.currentPageChanging = false;
-                }
+                this.currentPageChanging = true;
+                grid.search();
+                this.currentPageChanging = false;
 
             }, this);
 
             this.pageSize.subscribe(() => {
-                if (this.grid.dataProvider) {
-
-                    this.pageSizeChanging = true;
-                    grid.search();
-                    this.pageSizeChanging = false;
-                }
+                this.pageSizeChanging = true;
+                grid.search();
+                this.pageSizeChanging = false;
             }, this);
 
             grid['paging'] = this;
