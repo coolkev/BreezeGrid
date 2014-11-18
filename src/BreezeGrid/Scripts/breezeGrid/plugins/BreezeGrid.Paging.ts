@@ -14,6 +14,8 @@
 
         private currentPageChanging = false;
         private pageSizeChanging = false;
+        private firstQuery = true;
+
         constructor(defaultPageSize: number = 20) {
 
             this.pageSize = ko.observable(defaultPageSize);
@@ -53,10 +55,12 @@
 
         public getQueryOptions() {
 
-            if (!this.currentPageChanging) {
+            //dont reset current page if first query in case it was set from hash
+            if (!this.firstQuery && !this.currentPageChanging && this.currentPage()>1) {
                 this.currentPage(1);
             }
 
+            this.firstQuery = false;
             var options = this.original.getQueryOptions();
             options.includeTotalCount = !this.currentPageChanging && !this.pageSizeChanging;
             options.currentPage = this.currentPage();

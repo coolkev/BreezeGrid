@@ -628,6 +628,7 @@ var BreezeGrid;
                 this.currentPage = ko.observable(1).extend({ numeric: 0 });
                 this.currentPageChanging = false;
                 this.pageSizeChanging = false;
+                this.firstQuery = true;
                 this.pageSize = ko.observable(defaultPageSize);
                 this.pageSizes = [10, 20, 50, 100];
                 if (defaultPageSize != 20) {
@@ -662,10 +663,12 @@ var BreezeGrid;
             };
 
             Paging.prototype.getQueryOptions = function () {
-                if (!this.currentPageChanging) {
+                //dont reset current page if first query in case it was set from hash
+                if (!this.firstQuery && !this.currentPageChanging && this.currentPage() > 1) {
                     this.currentPage(1);
                 }
 
+                this.firstQuery = false;
                 var options = this.original.getQueryOptions();
                 options.includeTotalCount = !this.currentPageChanging && !this.pageSizeChanging;
                 options.currentPage = this.currentPage();
